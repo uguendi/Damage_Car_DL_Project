@@ -19,63 +19,53 @@ The system is capable of processing individual images via user-friendly web inte
 ### Steps to Setup:
 1.  Clone this repository.
 2.  Download the data folders from the Drive link above.
-3.  Place the following folders into the root directory of the project:
+3.  Place the following folders into the **`project_part3/`** directory (this directory where you found this README):
     *   `archive-2/` (Large dataset for batch processing)
     *   `dataset_raw_bing/` (Raw images for training)
     *   `severity_data/` (Labeled training data)
-4.  The pretrained models (`best.pt` and `severity_model_resnet18.pth`) and a small sample dataset (`In_Person/`) are already included in this repository for your convenience.
+4.  The pretrained models (`best.pt` and `severity_model_resnet18.pth`) and a small sample dataset (`In_Person/`) are already included in this directory for your convenience.
 
 ## Directory Structure and File Descriptions
 
+The project logic is provided as **Jupyter Notebooks** in the `Jupyter Notebook/` folder. The Python scripts descriptions below refer to the logic contained within these notebooks.
+
 ### Web Applications
 
-These files provide graphical user interfaces for interacting with the models.
-
-*   **`app.py`**
+*   **`Jupyter Notebook/app.ipynb`** (corresponds to `app.py`)
     *   **Framework**: Gradio
     *   **Functionality**: Allows users to upload an image of a car. The app processes the image and displays the result with bounding boxes and a text summary of detected damages.
-    *   **Input**: User-uploaded image.
-    *   **Output**: Annotated image and severity summary displayed in the browser.
 
-*   **`app_streamlit.py`**
+*   **`Jupyter Notebook/app_streamlit.ipynb`** (corresponds to `app_streamlit.py`)
     *   **Framework**: Streamlit
-    *   **Functionality**: A modern web interface for damage detection. It includes a legend for severity colors and counts the total number of damages found.
-    *   **Input**: User-uploaded image.
-    *   **Output**: Annotated image with severity legend.
+    *   **Functionality**: A modern web interface for damage detection.
 
 ### Batch Processing Pipelines
 
-These scripts are designed to process folders of images automatically.
-
-*   **`test_pipeline.py`**
+*   **`Jupyter Notebook/test_pipeline.ipynb`**
     *   **Purpose**: General-purpose batch processing for testing the full pipeline.
     *   **Input Source**: `In_Person/` (Included in repo as sample data).
     *   **Output Destination**: `In_Person_Results/` (Generated locally).
-    *   **Process**: Detects damages -> Crops -> Classifies Severity -> Saves original image with annotations.
 
-*   **`predict_archive2.py`**
+*   **`Jupyter Notebook/predict_archive2.ipynb`**
     *   **Purpose**: Optimized for processing large datasets.
     *   **Input Source**: `archive-2/image/` (Download from Drive).
     *   **Output Destination**: `archive2_results/` (Generated locally).
 
 ### Data Preparation and Utilities
 
-*   **`crop_damages.py`**
+*   **`Jupyter Notebook/crop_damages.ipynb`**
     *   **Purpose**: Extracts damaged regions from full car images.
     *   **Input Source**: `dataset_raw_bing/` (Download from Drive).
-    *   **Output Destination**: `cropped_damages/`.
 
-*   **`label_cropped_dataset.py`**
+*   **`Jupyter Notebook/label_cropped_dataset.ipynb`**
     *   **Purpose**: Auto-labels cropped images using the severity model.
     *   **Input Source**: `cropped_damages/`.
-    *   **Output Destination**: `cropped_damages_results/`.
 
 ### Training and Models
 
-*   **`train_severity.py`**
+*   **`Jupyter Notebook/train_severity.ipynb`**
     *   **Purpose**: Scripts to train the ResNet18 severity classification model.
     *   **Input Data**: `severity_data/` (Download from Drive).
-    *   **Output**: Saves the best model weights to `severity_model_resnet18.pth`.
 
 *   **`best.pt`**: Pre-trained YOLOv8 model (Included in Repo).
 *   **`severity_model_resnet18.pth`**: Trained ResNet18 model (Included in Repo).
@@ -90,33 +80,14 @@ pip install torch torchvision ultralytics opencv-python gradio streamlit pillow 
 
 ## Usage
 
-### Running the Web Apps
+This project is now structured as Jupyter Notebooks.
 
-To launch the Gradio interface:
-```bash
-python app.py
-```
+1.  Open the terminal and navigate to the `project_part3` directory.
+2.  Launch Jupyter Notebook or JupyterLab:
+    ```bash
+    jupyter notebook
+    ```
+3.  Open the desired notebook from the `Jupyter Notebook/` folder (e.g., `Jupyter Notebook/test_pipeline.ipynb`).
+4.  Run the first cell (Setup Cell) to initialize the correct paths.
+5.  Run the subsequent cells to execute the code.
 
-To launch the Streamlit interface:
-```bash
-streamlit run app_streamlit.py
-```
-
-### Running Batch Processing
-
-To process the "In_Person" folder:
-```bash
-python test_pipeline.py
-```
-
-To process the large archive:
-```bash
-python predict_archive2.py
-```
-
-### Training the Model
-
-If you have a dataset arranged in `severity_data/` and want to retrain the classifier:
-```bash
-python train_severity.py
-```
