@@ -1,0 +1,24 @@
+# Data Directories (Crowded/Large datasets - download from Drive)
+archive-2/
+dataset_raw_bing/
+severity_data/
+cropped_damages/
+
+# Generated Results and Logs
+In_Person_Results/
+archive2_results/
+cropped_damages_results/
+flagged/
+
+# Model Evaluation Artifacts
+confusion_matrix.png
+
+# Docs
+*paper.docx
+
+# Python & System
+__pycache__/
+*.pyc
+.DS_Store
+.ipynb_checkpoints/
+Drive Push/
