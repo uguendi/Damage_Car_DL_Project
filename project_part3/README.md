@@ -96,3 +96,22 @@ This project is now structured as Jupyter Notebooks.
 4.  Run the first cell (Setup Cell) to initialize the correct paths.
 5.  Run the subsequent cells to execute the code.
 
+## Running the Applications
+
+### 1. Gradio App (`app.ipynb`)
+This notebook contains a Gradio interface for interactive damage detection.
+- **How to Run:** Open the notebook in Jupyter and execute all cells. The app will launch directly within the notebook (or provide a local URL).
+
+### 2. Streamlit App (`app_streamlit.ipynb`)
+This notebook contains the code for a Streamlit web application. Streamlit apps cannot be run directly inside a notebook cell.
+- **How to Run:**
+    1. Open the notebook to view instructions.
+    2. Convert the notebook to a Python script:
+       ```bash
+       jupyter nbconvert --to script "project_part3/Jupyter Notebook/app_streamlit.ipynb"
+       ```
+    3. Run the generated script with Streamlit:
+       ```bash
+       streamlit run "project_part3/Jupyter Notebook/app_streamlit.py"
+       ```
+
