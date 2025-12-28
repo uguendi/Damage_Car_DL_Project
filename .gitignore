@@ -1,0 +1,5 @@
+project_part3/archive-2/
+project_part3/dataset_raw_bing/
+__pycache__/
+.DS_Store
+*.ipynb_checkpoints/

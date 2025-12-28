@@ -18,11 +18,16 @@ The system is capable of processing individual images via user-friendly web inte
 
 ### Steps to Setup:
 1.  Clone this repository.
-2.  Download the data folders from the Drive link above.
-3.  Place the following folders into the **`project_part3/`** directory (this directory where you found this README):
-    *   `archive-2/` (Large dataset for batch processing)
-    *   `dataset_raw_bing/` (Raw images for training)
-    *   `severity_data/` (Labeled training data)
+2.  Open the link above and navigate to the **"Project Part 3 Data"** folder.
+3.  Download the contents of this folder.
+4.  Place the following folders into the **`project_part3/`** directory (this directory where you found this README):
+    *   `archive-2`
+    *   `archive2_results`
+    *   `cropped_damages`
+    *   `cropped_damages_results`
+    *   `dataset_raw_bing`
+    *   `In_Person_Results`
+    *   `severity_data`
 4.  The pretrained models (`best.pt` and `severity_model_resnet18.pth`) and a small sample dataset (`In_Person/`) are already included in this directory for your convenience.
 
 ## Directory Structure and File Descriptions
