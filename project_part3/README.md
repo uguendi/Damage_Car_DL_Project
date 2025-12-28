@@ -62,6 +62,11 @@ The project logic is provided as **Jupyter Notebooks** in the `Jupyter Notebook/
     *   **Purpose**: Extracts damaged regions from full car images.
     *   **Input Source**: `dataset_raw_bing/` (Download from Drive).
 
+### Visual Outputs
+
+*   **`In_Person_Results/`**
+    *   **Content**: Contains the output images from the `test_pipeline.ipynb` notebook. These images show the model's detections on a sample dataset, with bounding boxes and severity labels drawn on the original images. This serves as a visual demonstration of the model's performance.
+
 *   **`Jupyter Notebook/label_cropped_dataset.ipynb`**
     *   **Purpose**: Auto-labels cropped images using the severity model.
     *   **Input Source**: `cropped_damages/`.
