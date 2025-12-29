@@ -1,6 +1,29 @@
 import os
 from bing_image_downloader import downloader
 
+import concurrent.futures
+
+def download_query(query):
+    """
+    Function to download images for a single query.
+    Designed to be run in a separate thread.
+    """
+    output_dir = "dataset_raw_bing"
+    print(f"--- Starting download for query: '{query}' ---")
+    try:
+        downloader.download(
+            query,
+            limit=125,  # <--- LIMIT: Number of images to download per query
+            output_dir=output_dir,
+            adult_filter_off=True,
+            force_replace=False,
+            timeout=60, # <--- TIMEOUT: Max time to wait for connection in seconds
+            verbose=False # Set to False for cleaner output during parallel execution
+        )
+        print(f"--- Finished download for query: '{query}' ---")
+    except Exception as e:
+        print(f"Error downloading images for query '{query}': {e}")
+
 def collect_damage_data():
     # Define damage categories and specific search queries
     damage_queries = {
@@ -35,25 +58,16 @@ def collect_damage_data():
         ]
     }
 
-    output_dir = "dataset_raw_bing"
+    # Flatten the dictionary into a single list of queries for parallel processing
+    all_queries = []
+    for queries in damage_queries.values():
+        all_queries.extend(queries)
 
-    # Iterate through categories and queries
-    for severity, queries in damage_queries.items():
-        print(f"--- Collecting images for severity: {severity} ---")
-        for query in queries:
-            print(f"Downloading images for query: '{query}'")
-            try:
-                downloader.download(
-                    query,
-                    limit=125,
-                    output_dir=output_dir,
-                    adult_filter_off=True,
-                    force_replace=False,
-                    timeout=60,
-                    verbose=True
-                )
-            except Exception as e:
-                print(f"Error downloading images for query '{query}': {e}")
+    print(f"Starting parallel download for {len(all_queries)} queries...")
+    
+    # <--- PARALLELISM: max_workers controls how many downloads happen at once
+    with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+        executor.map(download_query, all_queries)
 
     print("\nData collection complete.")
 

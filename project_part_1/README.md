@@ -33,6 +33,16 @@ The script uses a predefined list of search queries mapped to damage categories:
 You can manually modify the search queries by editing the `damage_queries` dictionary in `collect_damage_data.py`.
 
 ## Configuration
-*   **Threads:** The script runs sequentially for stability but can be modified for parallelism.
-*   **Limit:** Currently set to download **125 images** per query.
-*   **Timeout:** 60 seconds per image download attempt.
+The script is configured for parallel execution to speed up data collection. You can adjust the following parameters directly in the `collect_damage_data.py` file:
+
+*   **Parallelism (`max_workers`)**: Controlled by the `max_workers` parameter in the `ThreadPoolExecutor` line (at the bottom of the script).
+    *   *Current Value:* `5` (Downloads 5 queries simultaneously).
+    *   *How to change:* Increase for faster downloads if your internet is fast; decrease if you experience timeouts or errors.
+
+*   **Limit (`limit`)**: Controlled by the `limit` parameter inside the `download_query` function.
+    *   *Current Value:* `125` images per query.
+    *   *How to change:* Set to your desired number of images.
+
+*   **Timeout (`timeout`)**: Controlled by the `timeout` parameter inside the `download_query` function.
+    *   *Current Value:* `60` seconds.
+    *   *How to change:* Increase if you have a slow connection to prevent giving up on downloads too early.
