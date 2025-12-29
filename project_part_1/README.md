@@ -46,3 +46,7 @@ The script is configured for parallel execution to speed up data collection. You
 *   **Timeout (`timeout`)**: Controlled by the `timeout` parameter inside the `download_query` function.
     *   *Current Value:* `60` seconds.
     *   *How to change:* Increase if you have a slow connection to prevent giving up on downloads too early.
+
+## Disclaimer
+*   **Data Quality**: The script uses Bing Image Search, which retrieves images based on text queries without strict content filtering. Consequently, the downloaded dataset may contain irrelevant or low-quality images. **Manual verification is required** to filter out unusable images and ensure the dataset is meaningful for training.
+*   **Download Counts**: The target limit (e.g., 125 images) is a maximum threshold. The actual number of images downloaded may be lower due to factors such as broken links, connection timeouts, or a lack of relevant search results. This is normal behavior.
