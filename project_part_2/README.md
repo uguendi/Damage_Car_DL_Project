@@ -1,8 +1,8 @@
 # YOLOv8 Car Damage Detection Project
 
 This project uses YOLOv8 to detect car damages and specific damage areas. It consists of two main parts:
-1.  **Training (`yolo_training.ipynb`)**: Data preprocessing and model training.
-2.  **Optimization & Analysis (`Final_Optimization&Analysis.ipynb`)**: Hyperparameter optimization and result visualization.
+1.  **Training (`yolo_training_2.ipynb`)**: Data preprocessing and model training.
+2.  **Optimization & Analysis (`Analysis&Optimization.ipynb`)**: Hyperparameter optimization and result visualization.
 
 ## 1. Data Setup (Important!)
 
@@ -21,10 +21,10 @@ Before running any code, you must set up the dataset on Kaggle or any other plat
 
 ## 2. How to Run the Code
 
-### Part 1: Training (`yolo_training.ipynb`)
+### Part 1: Training (`yolo_training_2.ipynb`)
 This notebook handles data splitting, configuration, and training the YOLOv8 model.
 
-1.  **Open** `yolo_training.ipynb` in Kaggle.
+1.  **Open** `yolo_training_2.ipynb` in Kaggle.
 2.  **Add Data**: Click "Add Input" and select the `car-damage-labeled-yolo` dataset you created.
 3.  **Run All Cells**:
     *   The code will automatically create `train/val` folders in `/kaggle/working/`.
@@ -34,10 +34,10 @@ This notebook handles data splitting, configuration, and training the YOLOv8 mod
     *   The trained model weights will be saved at: `/kaggle/working/runs/detect/car_damage_7cls_final/weights/best.pt`
     *   **Save Version**: Click "Save Version" -> "Save & Run All (Commit)" to finish the training and save the outputs.
 
-### Part 2: Optimization & Analysis (`Final_Optimization&Analysis.ipynb`)
+### Part 2: Optimization & Analysis (`Analysis&Optimization.ipynb`)
 This notebook performs hyperparameter optimization (tuning) and analyzes results.
 
-1.  **Open** `Final_Optimization&Analysis.ipynb` in Kaggle.
+1.  **Open** `Analysis&Optimization.ipynb` in Kaggle.
 2.  **Add Data (Crucial)**:
     *   You **MUST** add the `car-damage-labeled-yolo` dataset (same as Part 1).
     *   *Why?* Optimization involves re-training the model with different parameters, so it needs access to the images and labels.
@@ -50,8 +50,8 @@ This notebook performs hyperparameter optimization (tuning) and analyzes results
 
 ## File Structure
 
-*   `yolo_training.ipynb`: Main training script.
-*   `Final_Optimization&Analysis.ipynb`: Result analysis and optimization script.
+*   `yolo_training_2.ipynb`: Main training script.
+*   `Analysis&Optimization.ipynb`: Result analysis and optimization script.
 *   `damage_config.yaml`: Generated automatically during training.
 
 ## Classes
